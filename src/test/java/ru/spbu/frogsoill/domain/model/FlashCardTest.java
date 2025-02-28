@@ -15,4 +15,37 @@ class FlashCardTest {
         assertTrue(card.checkAnswer("Would You like to do something?"));
     }
 
+    @Test
+    @DisplayName("checkAnswer возвращает false при неправильном ответе")
+    void when_AnswerIsWrong_then_checkAnswer_isFalse() {
+        String question = "Вежливо попросить что то сделать на английском";
+        String expectedAnswer = "Would You like to do something?";
+        FlashCard card = new FlashCard(question, expectedAnswer);
+        assertFalse(card.checkAnswer("London is the capital of Great Britain"));
+    }
+
+    @Test
+    @DisplayName("checkAnswer бросает NullPointerException при передаче null в ответе")
+    void when_AnswerIsNull_then_checkAnswer_throwsNPE() {
+        String question = "Вежливо попросить что то сделать на английском";
+        String expectedAnswer = "Would You like to do something?";
+        FlashCard card = new FlashCard(question, expectedAnswer);
+        assertThrows(NullPointerException.class, () -> card.checkAnswer(null));
+    }
+
+    @Test
+    @DisplayName("getQuestion возвращает строку переданную в конструкторе")
+    void getQuestion_check() {
+        String question = "Вежливо попросить что то сделать на английском";
+        String expectedAnswer = "Would You like to do something?";
+        FlashCard card = new FlashCard(question, expectedAnswer);
+        assertEquals("Вежливо попросить что то сделать на английском", card.getQuestion());
+    }
+
+    @Test
+    @DisplayName("Регистр влияет на правильность ответа")
+    public void testCheckAnswerCaseSensitivity() {
+        FlashCard flashCard = new FlashCard("What is the capital of France?", "Paris");
+        assertFalse(flashCard.checkAnswer("paris"));
+    }
 }
