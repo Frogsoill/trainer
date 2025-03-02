@@ -14,6 +14,9 @@ public class FlashCard {
     }
 
     public boolean checkAnswer(String answer) {
+        if (answer == null || answer.isBlank()) {
+            throw new IllegalArgumentException("Answer is null or empty");
+        }
         return answer.equals(expectedAnswer);
     }
 }

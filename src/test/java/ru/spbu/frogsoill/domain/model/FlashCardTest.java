@@ -25,12 +25,30 @@ class FlashCardTest {
     }
 
     @Test
-    @DisplayName("checkAnswer бросает NullPointerException при передаче null в ответе")
+    @DisplayName("checkAnswer бросает IllegalArgumentException при передаче null в ответе")
     void when_AnswerIsNull_then_checkAnswer_throwsNPE() {
         String question = "Вежливо попросить что то сделать на английском";
         String expectedAnswer = "Would You like to do something?";
         FlashCard card = new FlashCard(question, expectedAnswer);
-        assertThrows(NullPointerException.class, () -> card.checkAnswer(null));
+        assertThrows(IllegalArgumentException.class, () -> card.checkAnswer(null));
+    }
+
+    @Test
+    @DisplayName("checkAnswer бросает IllegalArgumentException при передаче пустой строки в ответе")
+    void when_AnswerIsEmpty_then_checkAnswer_throwsException() {
+        String question = "Вежливо попросить что то сделать на английском";
+        String expectedAnswer = "Would You like to do something?";
+        FlashCard card = new FlashCard(question, expectedAnswer);
+        assertThrows(IllegalArgumentException.class, () -> card.checkAnswer(""));
+    }
+
+    @Test
+    @DisplayName("checkAnswer бросает IllegalArgumentException при передаче строки с пробельными символами в ответе")
+    void when_AnswerIsEmptySymbols_then_checkAnswer_throwsException() {
+        String question = "Вежливо попросить что то сделать на английском";
+        String expectedAnswer = "Would You like to do something?";
+        FlashCard card = new FlashCard(question, expectedAnswer);
+        assertThrows(IllegalArgumentException.class, () -> card.checkAnswer("  \t\n"));
     }
 
     @Test
