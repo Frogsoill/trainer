@@ -11,7 +11,7 @@ class OpenQuestionCardTest {
     void when_AnswerIsOk_then_checkAnswer_isTrue() {
         String question = "Вежливо попросить что то сделать на английском";
         String expectedAnswer = "Would You like to do something?";
-        OpenQuestionCard card = new OpenQuestionCard(question, expectedAnswer);
+        OpenQuestionCard card = new OpenQuestionCard(1L, question, expectedAnswer);
         assertTrue(card.checkAnswer("Would You like to do something?"));
     }
 
@@ -20,7 +20,7 @@ class OpenQuestionCardTest {
     void when_AnswerIsWrong_then_checkAnswer_isFalse() {
         String question = "Вежливо попросить что то сделать на английском";
         String expectedAnswer = "Would You like to do something?";
-        OpenQuestionCard card = new OpenQuestionCard(question, expectedAnswer);
+        OpenQuestionCard card = new OpenQuestionCard(1L, question, expectedAnswer);
         assertFalse(card.checkAnswer("London is the capital of Great Britain"));
     }
 
@@ -29,7 +29,7 @@ class OpenQuestionCardTest {
     void when_AnswerIsNull_then_checkAnswer_throwsNPE() {
         String question = "Вежливо попросить что то сделать на английском";
         String expectedAnswer = "Would You like to do something?";
-        OpenQuestionCard card = new OpenQuestionCard(question, expectedAnswer);
+        OpenQuestionCard card = new OpenQuestionCard(1L, question, expectedAnswer);
         assertThrows(IllegalArgumentException.class, () -> card.checkAnswer(null));
     }
 
@@ -38,7 +38,7 @@ class OpenQuestionCardTest {
     void when_AnswerIsEmpty_then_checkAnswer_throwsException() {
         String question = "Вежливо попросить что то сделать на английском";
         String expectedAnswer = "Would You like to do something?";
-        OpenQuestionCard card = new OpenQuestionCard(question, expectedAnswer);
+        OpenQuestionCard card = new OpenQuestionCard(1L, question, expectedAnswer);
         assertThrows(IllegalArgumentException.class, () -> card.checkAnswer(""));
     }
 
@@ -47,7 +47,7 @@ class OpenQuestionCardTest {
     void when_AnswerIsEmptySymbols_then_checkAnswer_throwsException() {
         String question = "Вежливо попросить что то сделать на английском";
         String expectedAnswer = "Would You like to do something?";
-        OpenQuestionCard card = new OpenQuestionCard(question, expectedAnswer);
+        OpenQuestionCard card = new OpenQuestionCard(1L, question, expectedAnswer);
         assertThrows(IllegalArgumentException.class, () -> card.checkAnswer("  \t\n"));
     }
 
@@ -56,14 +56,14 @@ class OpenQuestionCardTest {
     void getQuestion_check() {
         String question = "Вежливо попросить что то сделать на английском";
         String expectedAnswer = "Would You like to do something?";
-        OpenQuestionCard card = new OpenQuestionCard(question, expectedAnswer);
+        OpenQuestionCard card = new OpenQuestionCard(1L, question, expectedAnswer);
         assertEquals("Вежливо попросить что то сделать на английском", card.getQuestion());
     }
 
     @Test
     @DisplayName("Регистр влияет на правильность ответа")
     public void testCheckAnswerCaseSensitivity() {
-        OpenQuestionCard openQuestionCard = new OpenQuestionCard("What is the capital of France?", "Paris");
+        OpenQuestionCard openQuestionCard = new OpenQuestionCard(1L, "What is the capital of France?", "Paris");
         assertFalse(openQuestionCard.checkAnswer("paris"));
     }
 }
