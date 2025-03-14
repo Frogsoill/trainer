@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface QuestionRepository {
     List<OpenQuestionCard> findAll();
 
-    Optional<OpenQuestionCard> findById(Long Id);
+    Optional<OpenQuestionCard> findById(Long id);
 
     void add(OpenQuestionCard task);
 
