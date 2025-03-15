@@ -6,7 +6,6 @@ import ru.spbu.frogsoill.domain.repo.QuestionRepository;
 
 import java.util.*;
 
-@Repository
 public class QuestionInMemoryStorage implements QuestionRepository {
     private final Map<Long, OpenQuestionCard> questions;
 
