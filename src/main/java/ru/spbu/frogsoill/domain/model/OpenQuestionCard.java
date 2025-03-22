@@ -24,6 +24,10 @@ public class OpenQuestionCard {
         return question;
     }
 
+    public String getExpectedAnswer() {
+        return expectedAnswer;
+    }
+
     public boolean checkAnswer(String answer) {
         ValidationUtil.validateNotEmpty(answer, "Answer is empty.");
         return answer.equals(expectedAnswer);
