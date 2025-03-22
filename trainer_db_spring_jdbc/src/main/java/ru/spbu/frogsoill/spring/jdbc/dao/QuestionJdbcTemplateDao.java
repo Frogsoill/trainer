@@ -56,7 +56,7 @@ public class QuestionJdbcTemplateDao implements QuestionRepository {
 
     @Override
     public void update(OpenQuestionCard task) {
-        jdbcTemplate.update(UPDATE_CARD_QUERY, task.getId(), task.getQuestion(), task.getExpectedAnswer());
+        jdbcTemplate.update(UPDATE_CARD_QUERY, task.getQuestion(), task.getExpectedAnswer(), task.getId());
     }
 
     @Override
