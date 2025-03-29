@@ -38,9 +38,9 @@ public class QuestionService {
         else repository.add(task);
     }
 
-    public void delete(OpenQuestionCard task) {
-        if (isTaskInvalid(task)) return;
-        repository.remove(task.getId());
+    public void delete(Long id) {
+        if (Objects.isNull(id)) return;
+        repository.remove(id);
     }
 
 
