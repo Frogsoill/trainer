@@ -1,16 +1,14 @@
 package ru.spbu.frogsoill.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.*;
 import ru.spbu.frogsoill.Application;
 
 import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackageClasses = Application.class)
+@PropertySource("jdbc.properties")
 public class SpringConfig {
     private static final String DB_DRIVER_CLASS_NAME = "org.h2.Driver";
     private static final String DB_URL = "jdbc:h2:mem:task;DB_CLOSE_DELAY=-1";

@@ -41,8 +41,7 @@ public class QuestionJdbcDao implements QuestionRepository {
     }
 
     public void initDataBase() {
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(DDL_QUERY)) {
+        try (Connection connection = dataSource.getConnection(); PreparedStatement statement = connection.prepareStatement(DDL_QUERY)) {
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,14 +52,9 @@ public class QuestionJdbcDao implements QuestionRepository {
     @Override
     public List<OpenQuestionCard> findAll() {
         List<OpenQuestionCard> cards = new ArrayList<>();
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_ALL_QUERY);
-             ResultSet resultSet = statement.executeQuery();) {
+        try (Connection connection = dataSource.getConnection(); PreparedStatement statement = connection.prepareStatement(FIND_ALL_QUERY); ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
-                OpenQuestionCard card = new OpenQuestionCard(
-                        resultSet.getLong("ID"),
-                        resultSet.getString("question"),
-                        resultSet.getString("expected_answer"));
+                OpenQuestionCard card = new OpenQuestionCard(resultSet.getLong("ID"), resultSet.getString("question"), resultSet.getString("expected_answer"));
                 cards.add(card);
             }
         } catch (SQLException e) {
@@ -72,28 +66,23 @@ public class QuestionJdbcDao implements QuestionRepository {
     @Override
     public Optional<OpenQuestionCard> findById(Long id) {
         List<OpenQuestionCard> cards = new ArrayList<>();
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_BY_ID_QUERY)) {
+        try (Connection connection = dataSource.getConnection(); PreparedStatement statement = connection.prepareStatement(FIND_BY_ID_QUERY)) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                OpenQuestionCard card = new OpenQuestionCard(
-                        resultSet.getLong("ID"),
-                        resultSet.getString("question"),
-                        resultSet.getString("expected_answer"));
+                OpenQuestionCard card = new OpenQuestionCard(resultSet.getLong("ID"), resultSet.getString("question"), resultSet.getString("expected_answer"));
                 cards.add(card);
             }
             resultSet.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return cards.isEmpty() ? Optional.empty() : Optional.of(cards.get(0));
+        return cards.isEmpty() ? Optional.empty() : Optional.of(cards.getFirst());
     }
 
     @Override
     public void add(OpenQuestionCard task) {
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(INSERT_CARD_QUERY);) {
+        try (Connection connection = dataSource.getConnection(); PreparedStatement statement = connection.prepareStatement(INSERT_CARD_QUERY)) {
             statement.setLong(1, task.getId());
             statement.setString(2, task.getQuestion());
             statement.setString(3, task.getExpectedAnswer());
@@ -106,8 +95,7 @@ public class QuestionJdbcDao implements QuestionRepository {
 
     @Override
     public void update(OpenQuestionCard task) {
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(UPDATE_CARD_QUERY);) {
+        try (Connection connection = dataSource.getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_CARD_QUERY)) {
             statement.setString(1, task.getQuestion());
             statement.setString(2, task.getExpectedAnswer());
             statement.setLong(3, task.getId());
@@ -119,12 +107,10 @@ public class QuestionJdbcDao implements QuestionRepository {
 
     @Override
     public void remove(Long id) {
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(DELETE_CARD_QUERY);) {
+        try (Connection connection = dataSource.getConnection(); PreparedStatement statement = connection.prepareStatement(DELETE_CARD_QUERY)) {
             statement.setLong(1, id);
             statement.execute();
-        } catch (
-                SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

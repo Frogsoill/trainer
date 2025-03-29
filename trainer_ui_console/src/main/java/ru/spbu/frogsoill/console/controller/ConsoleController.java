@@ -1,4 +1,4 @@
-package ru.spbu.frogsoill.controller;
+package ru.spbu.frogsoill.console.controller;
 
 import org.springframework.stereotype.Component;
 import ru.spbu.frogsoill.domain.model.OpenQuestionCard;
