@@ -17,16 +17,17 @@
             <artifactId>trainer_domain</artifactId>
         </dependency>
         <dependency>
-            <groupId>ru.spbu.frogsoill</groupId>
-            <artifactId>trainer_db_spring_jdbc</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ru.spbu.frogsoill</groupId>
+            <artifactId>trainer_db_spring_hibernate</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -43,7 +44,7 @@
                     <archive>
                         <manifest>
                             <mainClass>
-                                ru.spbu.frogsoill.console.Application
+                                ru.spbu.frogsoill.gui.Application
                             </mainClass>
                         </manifest>
                     </archive>
