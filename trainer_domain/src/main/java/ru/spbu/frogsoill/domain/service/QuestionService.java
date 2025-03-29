@@ -35,7 +35,7 @@ public class QuestionService {
     public void save(OpenQuestionCard task) {
         if (isTaskInvalid(task)) return;
         if (contains(task)) repository.update(task);
-        repository.add(task);
+        else repository.add(task);
     }
 
     public void delete(OpenQuestionCard task) {
