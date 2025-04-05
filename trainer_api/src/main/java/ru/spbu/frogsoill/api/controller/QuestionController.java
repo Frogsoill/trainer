@@ -42,6 +42,13 @@ public class QuestionController {
         service.save(mapper.toModel(dto));
     }
 
+    @Operation(summary = "Изменение карточки", description = "Изменяет существующую карточку")
+    @PutMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
+    public void update(@RequestBody OpenQuestionCardDto dto) {
+        service.save(mapper.toModel(dto));
+    }
+
+
     @Operation(summary = "Удаление карточки", description = "Находит карточку по ID и удаляет, если он найден")
     @DeleteMapping("/{id}")
     public void delete(@Parameter(description = "ID карточки для удаления") @PathVariable Long id) {

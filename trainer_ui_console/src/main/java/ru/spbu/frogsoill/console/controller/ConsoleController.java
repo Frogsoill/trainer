@@ -76,7 +76,7 @@ public class ConsoleController {
             System.out.println("Введите [Y], если хотите удалить карточку: " + card.get());
             String confirmation = scanner.nextLine();
             if (confirmation.equalsIgnoreCase("y")) {
-                service.delete(card.get());
+                service.delete(card.get().getId());
                 System.out.println("Карточка была удалена");
             } else {
                 System.out.println("Карточка не удалена");
