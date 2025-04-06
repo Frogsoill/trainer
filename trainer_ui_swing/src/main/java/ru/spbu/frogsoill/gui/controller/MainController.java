@@ -53,7 +53,7 @@ public class MainController implements Runnable {
                     null,
                     service.getAll().toArray(),
                     null);
-            service.delete(cardToDelete);
+            service.delete(cardToDelete.getId());
             prepareMainPanelForListCard();
         });
         taskMenu.add(removeTask);

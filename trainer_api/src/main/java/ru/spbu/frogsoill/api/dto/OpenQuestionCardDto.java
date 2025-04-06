@@ -11,7 +11,7 @@ public class OpenQuestionCardDto {
     private String question;
 
     @Schema(description = "Ожидаемый ответ", example = "Хараре")
-    private String expected_answer;
+    private String expectedAnswer;
 
 
     public Long getId() {
@@ -30,12 +30,12 @@ public class OpenQuestionCardDto {
         this.question = question;
     }
 
-    public String getExpected_answer() {
-        return expected_answer;
+    public String getExpectedAnswer() {
+        return expectedAnswer;
     }
 
-    public void setExpected_answer(String expected_answer) {
-        this.expected_answer = expected_answer;
+    public void setExpectedAnswer(String expected_answer) {
+        this.expectedAnswer = expected_answer;
     }
 
     public String displayedName() {
